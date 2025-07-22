@@ -1,0 +1,55 @@
+-- Roblox GUI for Krnl-only warning
+
+local Players = game:GetService("Players")
+local player = Players.LocalPlayer
+
+local gui = Instance.new("ScreenGui")
+gui.Name = "KrnlWarningGUI"
+gui.ResetOnSpawn = false
+gui.Parent = player:WaitForChild("PlayerGui")
+
+local frame = Instance.new("Frame")
+frame.Size = UDim2.new(0, 400, 0, 250)
+frame.Position = UDim2.new(0.5, -200, 0.5, -125)
+frame.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+frame.BorderSizePixel = 0
+frame.AnchorPoint = Vector2.new(0.5, 0.5)
+frame.Parent = gui
+
+local textLabel = Instance.new("TextLabel")
+textLabel.Size = UDim2.new(1, -20, 0, 150)
+textLabel.Position = UDim2.new(0, 10, 0, 10)
+textLabel.TextWrapped = true
+textLabel.TextScaled = true
+textLabel.TextXAlignment = Enum.TextXAlignment.Left
+textLabel.TextYAlignment = Enum.TextYAlignment.Top
+textLabel.BackgroundTransparency = 1
+textLabel.Font = Enum.Font.SourceSans
+textLabel.Text = [[This script is only works in Krnl executor except Delta,
+If you're using Krnl executor just copy the script then execute
+
+Reason:
+This script is not stable on Delta.
+Please use Krnl executor if you wish to use the script]]
+textLabel.TextColor3 = Color3.fromRGB(0, 0, 0)
+textLabel.Parent = frame
+
+local copyButton = Instance.new("TextButton")
+copyButton.Size = UDim2.new(0, 200, 0, 40)
+copyButton.Position = UDim2.new(0.5, -100, 1, -60)
+copyButton.BackgroundColor3 = Color3.fromRGB(200, 200, 200)
+copyButton.Text = "Copy Krnl script"
+copyButton.Font = Enum.Font.SourceSansBold
+copyButton.TextScaled = true
+copyButton.TextColor3 = Color3.fromRGB(0, 0, 0)
+copyButton.Parent = frame
+
+-- Script to copy the Krnl loadstring
+local copiedScript = 'loadstring(game:HttpGet("https://raw.githubusercontent.com/luffy346/Duplicator/refs/heads/main/Script"))()'
+
+copyButton.MouseButton1Click:Connect(function()
+    setclipboard(copiedScript)
+    copyButton.Text = "Copied!"
+    wait(2)
+    copyButton.Text = "Copy Krnl script"
+end)
