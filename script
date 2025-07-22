@@ -1,30 +1,30 @@
 local Players = game:GetService("Players")
 local player = Players.LocalPlayer
 
--- Create ScreenGui
+-- ScreenGui Setup
 local gui = Instance.new("ScreenGui")
 gui.Name = "KrnlOnlyGUI"
 gui.ResetOnSpawn = false
 gui.IgnoreGuiInset = true
 gui.Parent = player:WaitForChild("PlayerGui")
 
--- Create centered frame (white box)
+-- Main Box (Frame)
 local frame = Instance.new("Frame")
-frame.Size = UDim2.new(0, 400, 0, 160) -- Width: 400px, Height: 160px
-frame.Position = UDim2.new(0.5, 0, 0.5, 0) -- Center of screen
-frame.AnchorPoint = Vector2.new(0.5, 0.5) -- Set anchor to middle
+frame.Size = UDim2.new(0, 400, 0, 160) -- Width and height match your image
+frame.Position = UDim2.new(0.5, 0, 0.5, 0) -- EXACT center of screen
+frame.AnchorPoint = Vector2.new(0.5, 0.5) -- Anchor to center
 frame.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
 frame.BorderSizePixel = 0
 frame.Parent = gui
 
--- Rounded corners
+-- Rounded Corners
 local corner = Instance.new("UICorner")
-corner.CornerRadius = UDim.new(0, 12)
+corner.CornerRadius = UDim.new(0, 10)
 corner.Parent = frame
 
--- Text label
+-- Warning Text
 local textLabel = Instance.new("TextLabel")
-textLabel.Size = UDim2.new(1, -40, 0, 100)
+textLabel.Size = UDim2.new(1, -40, 0, 90)
 textLabel.Position = UDim2.new(0, 20, 0, 10)
 textLabel.BackgroundTransparency = 1
 textLabel.Font = Enum.Font.SourceSans
@@ -41,23 +41,23 @@ This script is not stable on Delta.
 Please use Krnl executor if you wish to use the script]]
 textLabel.Parent = frame
 
--- Copy button
+-- Copy Button
 local button = Instance.new("TextButton")
 button.Size = UDim2.new(0, 180, 0, 35)
 button.Position = UDim2.new(0.5, -90, 1, -45)
 button.BackgroundColor3 = Color3.fromRGB(200, 200, 200)
-button.Text = "Copy Krnl script"
 button.Font = Enum.Font.SourceSansBold
+button.Text = "Copy Krnl script"
 button.TextScaled = true
 button.TextColor3 = Color3.fromRGB(0, 0, 0)
 button.Parent = frame
 
--- Button rounded corners
+-- Button Corners
 local buttonCorner = Instance.new("UICorner")
 buttonCorner.CornerRadius = UDim.new(0, 6)
 buttonCorner.Parent = button
 
--- Clipboard logic
+-- Clipboard Copy Function
 local krnlScript = 'loadstring(game:HttpGet("https://raw.githubusercontent.com/luffy346/Duplicator/refs/heads/main/Script"))()'
 
 button.MouseButton1Click:Connect(function()
